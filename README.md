@@ -3,18 +3,22 @@
 
  
     git clone <url>
+ 
+2) Create virtual enviroment
+ 
+    python3 -m venv venv
 
-2) Activate virtual enviroment
+3) Activate virtual enviroment
 
 
     . ./venv/bin/activate
 
-3) install requirements.txt 
+4) install requirements.txt 
 
  
     pip3 install -r requirements.txt
 
-4) Run server on local host
+5) Run server on local host
 
 
     python3 manage.py runserver
