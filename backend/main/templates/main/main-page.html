@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html {
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+
+    {% for i in news %}
+        <h1>{{ i.title }}</h1><br><br>
+    {% endfor %}
+    <h1>{{ total_raiting }}</h1>
+    <div style="width: 200px; height: 200px; border-radius: 100px; background-color: rgb{{ color }}; z-index: 10;"></div>
+</body>
+</html>
