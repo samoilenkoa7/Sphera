@@ -11,6 +11,7 @@ def check_news_and_add():
 
     r = session.get(url)
     news = r.html.find('item')
+    print(news)
     for new in news:
         for i in new.find('title'):
             title = i.text
@@ -20,7 +21,8 @@ def check_news_and_add():
             link = i.text
         try:
             NewsModel.objects.create(title=title, short_description=description, link=link)
-        except IntegrityError:
+        except IntegrityError as ex:
+            print(ex)
             break
 
 

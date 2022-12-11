@@ -1,0 +1,9 @@
+django
+djangorestframework
+requests-html
+pyyaml
+django-cors-headers
+celery
+tzdata
+redis
+psycopg2-binary

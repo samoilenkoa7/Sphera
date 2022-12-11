@@ -1,0 +1,40 @@
+version: '2'
+services:
+  web:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    command: python3 manage.py runserver 0:8000
+    depends_on:
+      db:
+        condition: service_started
+    links:
+      - db
+  db:
+    image: postgres:13
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+  celery:
+    build: ./backend
+    command: celery -A sphera worker -l info
+    healthcheck:
+      test: celery
+    depends_on:
+      redis:
+        condition: service_started
+  celery_beat:
+    depends_on:
+      celery:
+        condition: service_started
+    build: ./backend
+    command: celery -A sphera beat -l info
+volumes:
+  pgdata: Null
